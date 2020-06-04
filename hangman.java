@@ -159,7 +159,7 @@ public class hangman{
     }
 
     public static void main(String[] args) {
-
+    
     String worte = picaword();
     System.out.println(worte);
 
