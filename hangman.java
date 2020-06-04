@@ -169,16 +169,14 @@ public class hangman{
         Scanner s = new Scanner(System.in);
         System.out.println("Gebe eine Schwierigkeit zwischen 1 und 3 an");
         
-        String wort = picaword(1);
-        wort = wort.toUpperCase();
+        String wort = picaword(1).toUpperCase();
         int wortlength = wort.length();
         char[] wortrat = new char[wortlength];
         int fehlversuch = 0;
         while (Spielan)
         {
         System.out.println("Rate einen Buchstaben!");
-        String rate1 = s.nextLine();
-        rate1= rate1.toUpperCase();
+        String rate1 = s.nextLine().toUpperCase();
         char rate = rate1.charAt(0);
         boolean save = false;
             for(int i=0;i<wort.length();i++)
