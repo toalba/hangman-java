@@ -19,15 +19,17 @@ public class hangman{
         }
     }
 
-    public static String picaword(){
-        File file = new File("worter.txt");
+    public static String picaword(int lvl){
+        String[] level = {"","lvl1.txt","lvl2.txt","lvl3.txt"};
+        File file = new File(level[lvl]);
+
         ArrayList<String> worte=new ArrayList<String>();
         if (!file.canRead() || !file.isFile())
         System.exit(0);
 
         BufferedReader in = null;
     try {
-        in = new BufferedReader(new FileReader("worter.txt"));
+        in = new BufferedReader(new FileReader(level[lvl]));
         String zeile = null;
         while ((zeile = in.readLine()) != null) {
             worte.add(zeile);
@@ -159,11 +161,15 @@ public class hangman{
         }
         System.out.println();
         System.out.println(strich);
+        System.out.print("Versuche übrig: ");
+        System.out.println(12-fehlversuch);
     }
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-        String wort = picaword();
+        System.out.println("Gebe eine Schwierigkeit zwischen 1 und 3 an");
+        
+        String wort = picaword(1);
         wort = wort.toUpperCase();
         int wortlength = wort.length();
         char[] wortrat = new char[wortlength];
