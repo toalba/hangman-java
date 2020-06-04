@@ -16,7 +16,7 @@ public class hangman{
         }
     }
 
-    public static ArrayList<String> picaword(){
+    public static String picaword(){
         File file = new File("worter.txt");
         ArrayList<String> worte=new ArrayList<String>();
         if (!file.canRead() || !file.isFile())
@@ -27,7 +27,6 @@ public class hangman{
         in = new BufferedReader(new FileReader("worter.txt"));
         String zeile = null;
         while ((zeile = in.readLine()) != null) {
-            System.out.println(zeile);
             worte.add(zeile);
         }
     } catch (IOException e) {
@@ -39,7 +38,8 @@ public class hangman{
             } catch (IOException e) {
             }
     }
-    return worte;
+    int random = (int)(Math.random()*worte.size());
+    return worte.get(random);
        
     }
 
@@ -159,10 +159,9 @@ public class hangman{
     }
 
     public static void main(String[] args) {
-        
-        picaword();
 
-
+    String worte = picaword();
+    System.out.println(worte);
 
         while (Spielan)
         {
