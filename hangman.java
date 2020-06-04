@@ -3,16 +3,19 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class hangman{
-    public static Boolean Spielan = false;
+    public static Boolean Spielan = true;
 
     public static void ende(Boolean gewonnen) {
         if (gewonnen){
             Spielan = false;
+            System.out.println("HURA, Gewonnen");
         }
         else {
-            Spielan = false; 
+            Spielan = false;
+            System.out.println("OHJE, du wurdest gehängt");
         }
     }
 
@@ -159,14 +162,53 @@ public class hangman{
     }
 
     public static void main(String[] args) {
-    
-    String worte = picaword();
-    System.out.println(worte);
-
+        Scanner s = new Scanner(System.in);
+        String wort = picaword();
+        wort = wort.toUpperCase();
+        int wortlength = wort.length();
+        char[] wortrat = new char[wortlength];
+        int fehlversuch = 0;
         while (Spielan)
         {
+        System.out.println("Rate einen Buchstaben!");
+        String rate1 = s.nextLine();
+        rate1= rate1.toUpperCase();
+        char rate = rate1.charAt(0);
+        boolean save = false;
+            for(int i=0;i<wort.length();i++)
+            {
+                if(rate==wort.charAt(i))
+                {
+                    wortrat[i]= rate;
+                    save= true;
+                }
+            }
+            int nixda=0;
+            for(int i = 0;i< wortrat.length ;i++)
+            {
+                System.out.print("|"); System.out.print(wortrat[i]);
+                
+                if(wortrat[i]==0)
+                {
+                    nixda++;
+                }
+            }
 
+            System.out.println();
+            if(!save)
+            {
+                fehlversuch++;
+            }
+            
+            ausgabe(fehlversuch);
+            if(nixda==0)
+            {
+                ende(true);
+            }
         }
+        
+        System.out.println("Danke fürs Spielen!");
+        s.close();
     }
 
 }
