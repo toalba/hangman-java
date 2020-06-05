@@ -5,47 +5,55 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class hangman{
+public class hangman {
     public static Boolean Spielan = true;
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
 
     public static void ende(Boolean gewonnen) {
-        if (gewonnen){
+        if (gewonnen) {
             Spielan = false;
-            System.out.println("HURA, Gewonnen");
-        }
-        else {
+            System.out.println("HURA, Gewonnen 🎉🎉🎉");
+        } else {
             Spielan = false;
-            System.out.println("OHJE, du wurdest gehängt");
+            System.out.println("OHJE, du wurdest gehängt 😭");
         }
     }
 
-    public static String picaword(int lvl){
-        String[] level = {"","lvl1.txt","lvl2.txt","lvl3.txt"};
+    public static String picaword(int lvl) {
+        String[] level = { "", "lvl1.txt", "lvl2.txt", "lvl3.txt" };
         File file = new File(level[lvl]);
 
-        ArrayList<String> worte=new ArrayList<String>();
+        ArrayList<String> worte = new ArrayList<String>();
         if (!file.canRead() || !file.isFile())
-        System.exit(0);
+            System.exit(0);
 
         BufferedReader in = null;
-    try {
-        in = new BufferedReader(new FileReader(level[lvl]));
-        String zeile = null;
-        while ((zeile = in.readLine()) != null) {
-            worte.add(zeile);
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-    } finally {
-        if (in != null)
-            try {
-                in.close();
-            } catch (IOException e) {
+        try {
+            in = new BufferedReader(new FileReader(level[lvl]));
+            String zeile = null;
+            while ((zeile = in.readLine()) != null) {
+                worte.add(zeile);
             }
-    }
-    int random = (int)(Math.random()*worte.size());
-    return worte.get(random);
-       
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (in != null)
+                try {
+                    in.close();
+                } catch (IOException e) {
+                }
+        }
+        int random = (int) (Math.random() * worte.size());
+        return worte.get(random);
+
     }
 
     public static void ausgabe(int fehlversuch) {
@@ -128,7 +136,7 @@ public class hangman{
             case 9:
                 System.out.println("     _____");
                 System.out.println("     |/  |");
-                System.out.println("     |   O");
+                System.out.println("     |   🙁");
                 System.out.println("     |   ");
                 System.out.println("     |   ");
                 System.out.println("_____|_____");
@@ -136,7 +144,7 @@ public class hangman{
             case 10:
                 System.out.println("     _____");
                 System.out.println("     |/  |");
-                System.out.println("     |   O");
+                System.out.println("     |   🙁");
                 System.out.println("     |   |");
                 System.out.println("     |   ");
                 System.out.println("_____|_____");
@@ -144,7 +152,7 @@ public class hangman{
             case 11:
                 System.out.println("     _____");
                 System.out.println("     |/  |");
-                System.out.println("     |   O");
+                System.out.println("     |   🙁");
                 System.out.println("     |   |");
                 System.out.println("     |   ^");
                 System.out.println("_____|_____");
@@ -152,7 +160,7 @@ public class hangman{
             case 12:
                 System.out.println("     _____");
                 System.out.println("     |/  |");
-                System.out.println("     |   O");
+                System.out.println("     |   🙁");
                 System.out.println("     |  `|´");
                 System.out.println("     |   ^");
                 System.out.println("_____|_____");
@@ -162,10 +170,45 @@ public class hangman{
         System.out.println();
         System.out.println(strich);
         System.out.print("Versuche übrig: ");
-        System.out.println(12-fehlversuch);
+        System.out.println(12 - fehlversuch);
     }
 
     public static void main(String[] args) {
+        start();
+        Scanner s = new Scanner(System.in);
+        System.out.println();
+        System.out.println("Print "+ANSI_RED+"'Start'"+ANSI_RESET+" to Start");
+        switch (s.nextLine()) {
+            case "Start": spielverlauf();break;
+        }
+        s.close();
+    }
+
+    public static void start() {
+        System.out.println();
+        System.out.println("Willkommen zu Hangman");
+        try {
+        Thread.sleep(200);
+        System.out.println("     _____");
+        Thread.sleep(200);
+        System.out.println("     |/  |");
+        Thread.sleep(200);
+        System.out.println("     |   🙁");
+        Thread.sleep(200);
+        System.out.println("     |  `|´");
+        Thread.sleep(200);
+        System.out.println("     |   ^");
+        Thread.sleep(200);
+        System.out.println("_____|_____");
+        System.out.println();
+        System.out.print("Made ");Thread.sleep(200);System.out.print("by ");Thread.sleep(200); System.out.println("Toalba 😁");
+        } catch (InterruptedException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+    }
+
+    public static void spielverlauf(){
         Scanner s = new Scanner(System.in);
         System.out.println("Gebe eine Schwierigkeit zwischen 1 und 3 an");
         
