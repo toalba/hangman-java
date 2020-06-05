@@ -177,7 +177,7 @@ public class hangman {
         start();
         Scanner s = new Scanner(System.in);
         System.out.println();
-        System.out.println("Print "+ANSI_RED+"'Start'"+ANSI_RESET+" to Start");
+        System.out.println("Write "+ANSI_RED+"Start"+ANSI_RESET+" to Start");
         switch (s.nextLine()) {
             case "Start": spielverlauf();break;
         }
@@ -203,7 +203,6 @@ public class hangman {
         System.out.println();
         System.out.print("Made ");Thread.sleep(200);System.out.print("by ");Thread.sleep(200); System.out.println("Toalba 😁");
         } catch (InterruptedException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
     }
     }
