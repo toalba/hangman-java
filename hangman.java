@@ -210,7 +210,7 @@ public class hangman{
                 ende(true);
             }
         }
-        
+        System.out.print("Das Wort war: ");System.out.println(wort);
         System.out.println("Danke fürs Spielen!");
         s.close();
     }
