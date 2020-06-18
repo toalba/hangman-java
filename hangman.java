@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class hangman {
     public static Boolean Spielan = true;
     public static final String ANSI_RESET = "\u001B[0m";
@@ -28,16 +29,22 @@ public class hangman {
     }
 
     public static String picaword(int lvl) {
-        String[] level = { "", "lvl1.txt", "lvl2.txt", "lvl3.txt" };
-        File file = new File(level[lvl]);
+        String[] level = {"", "lvl1.txt","lvl2.txt","lvl3.txt"};
+
+        File file = new File("hangman/hangman-java/lvl1.txt");
+        System.out.println("lvl1.txt");
 
         ArrayList<String> worte = new ArrayList<String>();
         if (!file.canRead() || !file.isFile())
+        {
+           System.out.println(System.getProperty("user.dir"));
+            System.out.println("Can not read file. ERR");
+            System.out.println(file.canRead());System.out.println(file.isFile());
             System.exit(0);
-
+        }
         BufferedReader in = null;
         try {
-            in = new BufferedReader(new FileReader(level[lvl]));
+            in = new BufferedReader(new FileReader("hangman/hangman-java/lvl1.txt"));
             String zeile = null;
             while ((zeile = in.readLine()) != null) {
                 worte.add(zeile);
@@ -180,6 +187,7 @@ public class hangman {
         System.out.println("Write "+ANSI_RED+"Start"+ANSI_RESET+" to Start");
         switch (s.nextLine()) {
             case "Start": spielverlauf();break;
+            case "Rules": /* methode einfügen */ break; 
         }
         s.close();
     }
@@ -193,7 +201,7 @@ public class hangman {
         Thread.sleep(200);
         System.out.println("     |/  |");
         Thread.sleep(200);
-        System.out.println("     |   🙁");
+        System.out.println("     |   🙁");
         Thread.sleep(200);
         System.out.println("     |  `|´");
         Thread.sleep(200);
@@ -209,7 +217,7 @@ public class hangman {
 
     public static void spielverlauf(){
         Scanner s = new Scanner(System.in);
-        System.out.println("Gebe eine Schwierigkeit zwischen 1 und 3 an");
+       // System.out.println("Gebe eine Schwierigkeit zwischen 1 und 3 an");
         
         String wort = picaword(1).toUpperCase();
         int wortlength = wort.length();
